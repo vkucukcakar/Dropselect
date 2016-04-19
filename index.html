@@ -8,6 +8,30 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<style>
+	div.test > div{
+		margin: 20px;
+	}
+	div.test > .jumbotron{
+		margin: 0;
+		padding-right: 10px;
+		padding-left: 10px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+	div.test {
+		padding-bottom:50px;
+	}	
+	#display{
+		color: #ff0000;
+	}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="https://raw.githubusercontent.com/vkucukcakar/Dropselect/master/dist/js/jquery.dropselect.js"></script>
+
   </head>
   <body>
     <section class="page-header">
@@ -22,9 +46,40 @@
       <h1>
 <a id="dropselect" class="anchor" href="#dropselect" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dropselect</h1>
 
-<p>jQuery plugin to make Bootstrap dropdown to "behave like" html select element which can be used as a styled select element.</p>
+<div class="container test">
+            <div class="jumbotron">
+				<p style="font-size:18px;">jQuery plugin to make Bootstrap dropdown to "behave like" html select element which can be used as a styled select element.</p>
+				<p style="font-size:16px;"><em>Requires jQuery, Bootstrap</em></p>
+            </div>
 
-<p><em>Requires jQuery, Bootstrap</em></p>
+			<!-- Example dropdown html -->
+            <div id="fruit-select" class="dropdown dropselect">
+                <input type="hidden" name="fruit" value="">
+                Fruit: (dropdown example)<br />  
+                <button class="btn btn-default dropdown-toggle" type="button" id="fruit" data-toggle="dropdown" aria-expanded="true">
+                    <span class="dropdown-label">Dropdown</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="option-post-cleanup">
+                    <li role="presentation"><a data-value="orange" data-selected="selected" role="menuitem" tabindex="-1">Orange</a></li>
+                    <li role="presentation"><a data-value="pear" role="menuitem" tabindex="-1">Pear</a></li>
+                    <li role="presentation"><a data-value="apple" role="menuitem" tabindex="-1">Apple</a></li>
+                    <li role="presentation"><a data-value="" role="menuitem" tabindex="-1">None</a></li>
+                </ul>
+            </div>                                    
+			<!-- Example dropdown html -->
+
+			
+            <!-- Example of manually selecting -->
+			<div>
+            <button class="btn btn-default" type="button" onclick="$('#fruit-select').dropselect('select','pear');"> Manually select "pear" using javascript </button>
+            </div>
+            
+            <!-- red information line displayed here -->
+			<div id="display">
+            </div>
+</div>
+
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/vkucukcakar/Dropselect">Dropselect</a> is maintained by <a href="https://github.com/vkucukcakar">vkucukcakar</a>.</span>
@@ -34,6 +89,25 @@
 
     </section>
 
+<!-- Example dropselect javascript -->
+<script>    
+    function display_fruit(){
+		//get current value of select
+        var value=$('#fruit-select').dropselect('value');
+		//display red information line
+        $("#display").html('<br><p>"'+value+'" selected. This will post a hidden input named "fruit" and a value of "'+value+'" if wrapped by a form element.</p>');
+    }
+    
+    $(document).ready(function () {
+        //make Bootstrap dropdown to behave like select
+		//this is enough for most people! When user selects an option, a hidden input named "fruit" with the selected value is created.
+        $('.dropselect').dropselect();
+		
+	  	//set onchange event handler to display red information line
+	  	$('#fruit-select').on('change', display_fruit);      
+	});	
+</script>
+	
   
   </body>
 </html>
