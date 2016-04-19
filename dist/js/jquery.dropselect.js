@@ -1,5 +1,5 @@
 /*!
-* Dropselect - v1.0.0
+* dropselect - v1.0.0
 *
 * jQuery plugin to make Bootstrap dropdown to "behave like" html select element
 * Requires jQuery, Bootstrap
@@ -25,7 +25,6 @@
 * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
-
 */ 
 ;(function($, window, document, undefined) {
  
