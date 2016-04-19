@@ -1,0 +1,6 @@
+{
+  "name": "Dropselect",
+  "tagline": "",
+  "body": "# Dropselect\r\n\r\njQuery plugin to make Bootstrap dropdown to \"behave like\" html select element which can be used as a styled select element.\r\n\r\n*Requires jQuery, Bootstrap*\r\n\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
