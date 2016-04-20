@@ -10,9 +10,16 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>	
+	<script>hljs.initHighlightingOnLoad();</script>
 	<style>
 	.main-content{
 		max-width:none;
+	}
+	.container.test pre code{
+		font-size: 1.2em;
 	}
 	.site-footer-owner{
 		font-size: 1.5em;
@@ -85,8 +92,59 @@
             </div>
             
             <!-- red information line displayed here -->
-			<div id="display">
-            </div>
+	<div id="display">
+			</div>
+			
+			<pre><code class="html">
+			<p> &lt;!-- Example dropdown html --&gt;<br>
+  &lt;div id=&quot;fruit-select&quot; class=&quot;dropdown dropselect&quot;&gt;<br>
+  &lt;input type=&quot;hidden&quot; name=&quot;fruit&quot; value=&quot;&quot;&gt;<br>
+			  Fruit: (dropdown example)&lt;br /&gt; <br>
+  &lt;button class=&quot;btn btn-default dropdown-toggle&quot; type=&quot;button&quot; id=&quot;fruit&quot; data-toggle=&quot;dropdown&quot; aria-expanded=&quot;true&quot;&gt;<br>
+  &lt;span class=&quot;dropdown-label&quot;&gt;Dropdown&lt;/span&gt;<br>
+  &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;<br>
+  &lt;/button&gt;<br>
+  &lt;ul class=&quot;dropdown-menu&quot; role=&quot;menu&quot; aria-labelledby=&quot;option-post-cleanup&quot;&gt;<br>
+  &lt;li role=&quot;presentation&quot;&gt;&lt;a data-value=&quot;orange&quot; data-selected=&quot;selected&quot; role=&quot;menuitem&quot; tabindex=&quot;-1&quot;&gt;Orange&lt;/a&gt;&lt;/li&gt;<br>
+  &lt;li role=&quot;presentation&quot;&gt;&lt;a data-value=&quot;pear&quot; role=&quot;menuitem&quot; tabindex=&quot;-1&quot;&gt;Pear&lt;/a&gt;&lt;/li&gt;<br>
+  &lt;li role=&quot;presentation&quot;&gt;&lt;a data-value=&quot;apple&quot; role=&quot;menuitem&quot; tabindex=&quot;-1&quot;&gt;Apple&lt;/a&gt;&lt;/li&gt;<br>
+  &lt;li role=&quot;presentation&quot;&gt;&lt;a data-value=&quot;&quot; role=&quot;menuitem&quot; tabindex=&quot;-1&quot;&gt;None&lt;/a&gt;&lt;/li&gt;<br>
+  &lt;/ul&gt;<br>
+  &lt;/div&gt; <br>
+  &lt;!-- Example dropdown html --&gt;</p>
+			<p>
+  &lt;!-- Example of manually selecting --&gt;<br>
+  &lt;div&gt;<br>
+  &lt;button class=&quot;btn btn-default&quot; type=&quot;button&quot; onclick=&quot;$('#fruit-select').dropselect('select','pear');&quot;&gt; Manually select &quot;pear&quot; using javascript &lt;/button&gt;<br>
+  &lt;/div&gt;<br>
+  <br>
+  &lt;!-- red information line displayed here --&gt;<br>
+  &lt;div id=&quot;display&quot;&gt;<br>
+  &lt;/div&gt;<br>
+    </p>          
+            </code></pre>
+	<pre><code class="js">
+	&lt;!-- Example dropselect javascript --&gt;<br>
+	&lt;script&gt;    <br>
+    function display_fruit(){<br>
+	//get current value of select<br>
+	var value=$('#fruit-select').dropselect('value');<br>
+	//display red information line<br>
+	$(&quot;#display&quot;).html('&lt;br&gt;&lt;p&gt;&quot;'+value+'&quot; selected. This will set the value of hidden input &quot;fruit&quot; to &quot;'+value+'&quot; and the value will be posted if wrapped by a form element.&lt;/p&gt;');<br>
+    }<br>
+    <br>
+    $(document).ready(function () {<br>
+	//make Bootstrap dropdown to behave like select<br>
+	//this is enough for most people! When user selects an option, a hidden input named &quot;fruit&quot; with the selected value is created.<br>
+        $('.dropselect').dropselect();<br>
+		<br>
+	  	//set onchange event handler to display red information line<br>
+	  	$('#fruit-select').on('change', display_fruit);      <br>
+	});	<br>
+&lt;/script&gt;<br>
+
+	</code></pre>
+			
 </div>
 
 
@@ -104,7 +162,7 @@
 		//get current value of select
         var value=$('#fruit-select').dropselect('value');
 		//display red information line
-        $("#display").html('<br><p>"'+value+'" selected. This will create a hidden input named "fruit" and will post a value of "'+value+'" if wrapped by a form element.</p>');
+        $("#display").html('<br><p>"'+value+'" selected. This will set the value of hidden input "fruit" to "'+value+'" and the value will be posted if wrapped by a form element.</p>');
     }
     
     $(document).ready(function () {
