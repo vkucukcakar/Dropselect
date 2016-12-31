@@ -26,6 +26,9 @@
 	#display{
 		color: #ff0000;
 	}
+	hr {
+		padding-bottom:20px;
+	}	
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -74,7 +77,25 @@
             <!-- red information line displayed here -->
 			<div id="display">
             </div>
+			<hr>
 			
+			<!-- Example dropup html  -->
+            <div id="vegetable-select" class="dropup dropselect">
+                <input type="hidden" name="vegetable" value="">
+                Vegetable: (dropup example)<br />  
+                <button class="btn btn-default dropdown-toggle" type="button" id="vegetable" data-toggle="dropdown" aria-expanded="true">
+                    <span class="dropdown-label">Dropdown</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="option-post-cleanup">
+                    <li role="presentation"><a data-value="broccoli" data-selected="selected" role="menuitem" tabindex="-1">Broccoli</a></li>
+                    <li role="presentation"><a data-value="spinach" role="menuitem" tabindex="-1">Spinach</a></li>
+                    <li role="presentation"><a data-value="cabbage" role="menuitem" tabindex="-1">Cabbage</a></li>
+                    <li role="presentation"><a data-value="" role="menuitem" tabindex="-1">None</a></li>
+                </ul>
+            </div>                                    
+			<!-- Example dropup html  -->
+
 </div>
 
 <!-- Example dropselect javascript -->

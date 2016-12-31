@@ -1,5 +1,5 @@
 /*!
-* dropselect - v1.0.0
+* dropselect - v1.1.0
 *
 * jQuery plugin to make Bootstrap dropdown to "behave like" html select element
 * Requires jQuery, Bootstrap
@@ -34,27 +34,27 @@
             // Concstructor: Example: $('.dropselect').dropselect();
             case undefined:
             case '':
-                this.filter( ".dropdown" ).each(function() {
+                this.filter( ".dropdown, .dropup" ).each(function() {
                     // element a
                     $(this).find('.dropdown-menu li a').attr('href','').addClass('dropselect-option').css('cursor','pointer');
                     $(this).find('.dropdown-menu li a[data-selected="selected"]').each(function() {
                         // Set label from initial selected element
-                        $(this).parents('.dropdown').find('button[data-toggle="dropdown"] .dropdown-label').html( $(this).text() );
+                        $(this).parents('.dropdown, .dropup').find('button[data-toggle="dropdown"] .dropdown-label').html( $(this).text() );
                         // Set hidden input value from initial selected element
-                        $(this).parents('.dropdown').find('input[type="hidden"]').val( $(this).attr('data-value') );
+                        $(this).parents('.dropdown, .dropup').find('input[type="hidden"]').val( $(this).attr('data-value') );
                     });
                     //Click event function
                     $(this).find('.dropdown-menu li a').on('click',function(event){
                         // Focus selected dropdown
-                        $(this).parents('.dropdown').find('button[data-toggle="dropdown"]').focus();
+                        $(this).parents('.dropdown, .dropup').find('button[data-toggle="dropdown"]').focus();
                         // Update label from selected element
-                        $(this).parents('.dropdown').find('button[data-toggle="dropdown"] .dropdown-label').html( $(this).text() );
+                        $(this).parents('.dropdown, .dropup').find('button[data-toggle="dropdown"] .dropdown-label').html( $(this).text() );
                         // Update hidden input value from selected element
-                        $(this).parents('.dropdown').find('input[type="hidden"]').val( $(this).attr('data-value') );
+                        $(this).parents('.dropdown, .dropup').find('input[type="hidden"]').val( $(this).attr('data-value') );
                         //Decide to call onchange handler later
                         var trigger_change=( 'selected'==$(this).attr('data-selected') ) ? false : true;
                         // Unselect all
-                        $(this).parents('.dropdown').find('a').removeAttr('data-selected');
+                        $(this).parents('.dropdown, .dropup').find('a').removeAttr('data-selected');
                         // Select current
                         $(this).attr('data-selected','selected');
                         //Manually trigger change event
@@ -68,24 +68,24 @@
             // Manually select by value. Example: $('.dropselect').dropselect('select','anyval');
             case 'select':
                 //Decide to call onchange handler later
-                var trigger_change=( 'selected'==$(this).filter('.dropdown').find('.dropdown-menu li a[data-value="'+param+'"]').attr('data-selected') ) ? false : true;
+                var trigger_change=( 'selected'==$(this).filter('.dropdown, .dropup').find('.dropdown-menu li a[data-value="'+param+'"]').attr('data-selected') ) ? false : true;
                 // Unselect all
-                $(this).filter('.dropdown').find('.dropdown-menu li a').removeAttr('data-selected');
+                $(this).filter('.dropdown, .dropup').find('.dropdown-menu li a').removeAttr('data-selected');
                 // Select current
-                $(this).filter('.dropdown').find('.dropdown-menu li a[data-value="'+param+'"]').attr('data-selected','selected');
+                $(this).filter('.dropdown, .dropup').find('.dropdown-menu li a[data-value="'+param+'"]').attr('data-selected','selected');
                 // Update label from selected element
-                $(this).filter('.dropdown').find('button[data-toggle="dropdown"] .dropdown-label').html( $(this).filter('.dropdown').find('.dropdown-menu li a[data-selected="selected"]').text() );
+                $(this).filter('.dropdown, .dropup').find('button[data-toggle="dropdown"] .dropdown-label').html( $(this).filter('.dropdown, .dropup').find('.dropdown-menu li a[data-selected="selected"]').text() );
                 // Update hidden input value from selected element
-                $(this).filter('.dropdown').find('input[type="hidden"]').val( $(this).filter('.dropdown').find('.dropdown-menu li a[data-selected="selected"]').attr('data-value') );
+                $(this).filter('.dropdown, .dropup').find('input[type="hidden"]').val( $(this).filter('.dropdown, .dropup').find('.dropdown-menu li a[data-selected="selected"]').attr('data-value') );
                 //Manually trigger change event
                 if (trigger_change)
-                    $(this).filter('.dropdown').find('.dropdown-menu li a').trigger('change');
+                    $(this).filter('.dropdown, .dropup').find('.dropdown-menu li a').trigger('change');
                 return this;
                 break;
             
             // Get selected option value. Example: var anyvalue=$('#mydropselect').dropselect('value');
             case 'value':
-                return $(this).filter('.dropdown').find('a.dropselect-option[data-selected="selected"]').attr('data-value');
+                return $(this).filter('.dropdown, .dropup').find('a.dropselect-option[data-selected="selected"]').attr('data-value');
                 
         }//switch
         

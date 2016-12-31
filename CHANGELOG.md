@@ -2,6 +2,8 @@
 
 ## CHANGELOG
 
+v1.1.0
+- added support for Bootstrap Dropup
 
 v1.0.0
 - initial public version
