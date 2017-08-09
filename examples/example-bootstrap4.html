@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>dropselect jQuery plugin - Bootstrap v4 Example Page</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+
+  <style>
+    body {
+      padding-top: 70px;
+    }
+    div.test > div{
+		margin: 20px;
+    }
+    div.test > .jumbotron{
+		margin: 0;
+		padding-top: 20px;
+		padding-bottom: 20px;
+    }
+	div.test {
+		padding-bottom:50px;
+	}	
+	#display{
+		color: #ff0000;
+	}
+	hr {
+		padding-bottom:20px;
+	}
+	select.form-control {
+		width: auto;
+	}
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  <script src="../src/js/jquery.dropselect.js"></script>
+</head>
+<body>
+
+<nav class="navbar fixed-top navbar-light bg-faded">
+  <div class="container">
+      <a class="navbar-brand" href="#">dropselect jQuery plugin - Bootstrap v4 Example Page</a>
+  </div>
+</nav>
+
+
+<div class="container test">
+            <div class="jumbotron">
+                <p style="font-size:18px;">dropselect jQuery plugin</p>
+                <p style="font-size:16px;">jQuery plugin to make Bootstrap dropdown to "behave like" html select element</p>
+            </div>
+                      
+			<!-- Example dropdown Bootstrap v4 html -->
+            <div id="fruit-select" class="dropdown dropselect">
+                <input type="hidden" name="fruit" value="">
+                Fruit: (dropdown example)<br />  
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="fruit" data-toggle="dropdown" aria-expanded="true">
+                    <span class="dropdown-label">Dropdown</span>
+                    <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu" role="menu" aria-labelledby="option-post-cleanup">
+                    <a class="dropdown-item" data-value="orange" data-selected="selected" role="menuitem" tabindex="-1">Orange</a>
+                    <a class="dropdown-item" data-value="pear" role="menuitem" tabindex="-1">Pear</a>
+                    <a class="dropdown-item" data-value="apple" role="menuitem" tabindex="-1">Apple</a>
+                    <a class="dropdown-item" data-value="" role="menuitem" tabindex="-1">None</a>
+                </div>
+            </div>                                    
+			<!-- Example dropdown Bootstrap v4 html -->
+                       		
+            <!-- Example of manually selecting -->
+			<div>
+            <button class="btn btn-secondary" type="button" onclick="$('#fruit-select').dropselect('select','pear');"> Manually select "pear" using javascript </button>
+            </div>
+            
+            <!-- red information line displayed here -->
+			<div id="display">
+            </div>
+			<hr>
+			
+			<!-- Example dropup Bootstrap v4 html  -->
+            <div id="vegetable-select" class="dropup dropselect">
+                <input type="hidden" name="vegetable" value="">
+                Vegetable: (dropup example)<br />  
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="vegetable" data-toggle="dropdown" aria-expanded="true">
+                    <span class="dropdown-label">Dropdown</span>
+                    <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu" role="menu" aria-labelledby="option-post-cleanup">
+                    <a class="dropdown-item" data-value="broccoli" data-selected="selected" role="menuitem" tabindex="-1">Broccoli</a>
+                    <a class="dropdown-item" data-value="spinach" role="menuitem" tabindex="-1">Spinach</a>
+                    <a class="dropdown-item" data-value="cabbage" role="menuitem" tabindex="-1">Cabbage</a>
+                    <a class="dropdown-item" data-value="" role="menuitem" tabindex="-1">None</a>
+                </div>
+            </div>                                    
+			<!-- Example dropup Bootstrap v4 html  -->
+
+            <!-- information -->
+			<div>
+			<hr>
+			<p>
+				Below is the Bootstrap v4's select menu rendered pretty well on most modern browsers but not styled same on all browsers. <br>
+				That's why I have added Bootstrap v4 support to dropselect jQuery plugin.
+			</p>
+            </div>
+			
+			<!-- Bootstrap 4 select menu -->
+			<div>
+			<select class="form-control">
+			  <option selected>Open this select menu</option>
+			  <option value="1">One</option>
+			  <option value="2">Two</option>
+			  <option value="3">Three</option>
+			</select>
+			</div>
+			<!-- Bootstrap 4 select menu -->
+
+</div>
+
+<!-- Example dropselect javascript -->
+<script>    
+    function display_fruit(){
+		//get current value of select
+        var value=$('#fruit-select').dropselect('value');
+		//display red information line
+        $("#display").html('<br><p>"'+value+'" selected. This will post a hidden input named "fruit" and a value of "'+value+'" if wrapped by a form element.</p>');
+    }
+    
+    $(document).ready(function () {
+        //make Bootstrap dropdown to behave like select
+		//this is enough for most people! When user selects an option, a hidden input named "fruit" with the selected value is created.
+        $('.dropselect').dropselect();
+		
+	  	//set onchange event handler to display red information line
+	  	$('#fruit-select').on('change', display_fruit);      
+	});	
+</script>
+
+</body>
+</html>
